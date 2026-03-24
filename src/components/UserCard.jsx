@@ -48,17 +48,17 @@ export default function UserCard() {
                 boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)'
               }}
             />
-            <h3 style={{ fontSize: '1.4rem' }}>{`${user.name.first} ${user.name.last}`}</h3>
+            <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)' }}>{`${user.name.first} ${user.name.last}`}</h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%', marginTop: '0.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#cbd5e1', fontSize: '0.95rem' }}>
-                <Mail size={16} color="var(--accent-color)" /> {user.email}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                <Mail size={16} color="var(--accent-1)" /> {user.email}
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#cbd5e1', fontSize: '0.95rem' }}>
-                <MapPin size={16} color="var(--accent-color)" /> {user.location.country} ({user.dob.age} yrs)
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                <MapPin size={16} color="var(--accent-1)" /> {user.location.country} ({user.dob.age} yrs)
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#cbd5e1', fontSize: '0.95rem' }}>
-                <Phone size={16} color="var(--accent-color)" /> {user.phone}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                <Phone size={16} color="var(--accent-1)" /> {user.phone}
               </div>
             </div>
           </div>

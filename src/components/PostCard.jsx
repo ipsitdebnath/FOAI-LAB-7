@@ -29,7 +29,7 @@ export default function PostCard() {
   }, [resource]);
 
   return (
-    <div className="card fade-in" style={{ animationDelay: '0.4s' }}>
+    <div className="card fade-in" style={{ gridColumn: '1 / -1', animationDelay: '0.4s' }}>
       <div className="card-header" style={{ justifyContent: 'space-between', width: '100%', flexWrap: 'wrap', gap: '10px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div className="card-icon"><Database size={24} /></div>

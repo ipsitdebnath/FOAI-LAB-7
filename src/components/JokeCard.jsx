@@ -38,11 +38,11 @@ export default function JokeCard() {
         ) : error ? (
           <p className="error-text">Error: {error}</p>
         ) : joke ? (
-          <div style={{ textAlign: 'left', width: '100%', background: 'rgba(0,0,0,0.2)', padding: '1.25rem', borderRadius: '12px' }}>
-            <p style={{ fontWeight: 500, marginBottom: '0.75rem', fontSize: '1.1rem', color: '#f1f5f9' }}>
+          <div style={{ textAlign: 'left', width: '100%', background: 'var(--bg-top)', padding: '1.25rem', borderRadius: '12px', border: '1px solid var(--card-border)' }}>
+            <p style={{ fontWeight: 500, marginBottom: '0.75rem', fontSize: '1.1rem', color: 'var(--text-primary)' }}>
               {joke.setup}
             </p>
-            <p style={{ color: 'var(--accent-color)', fontWeight: 600, fontSize: '1.2rem' }}>
+            <p style={{ color: 'var(--accent-1)', fontWeight: 600, fontSize: '1.2rem' }}>
               {joke.delivery || joke.punchline}
             </p>
           </div>

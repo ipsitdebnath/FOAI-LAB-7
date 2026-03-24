@@ -72,7 +72,7 @@ export default function DogCard() {
               backgroundPosition: 'center',
               borderRadius: '12px'
             }} />
-            <h3 style={{ marginTop: '1rem', fontSize: '1.25rem', color: '#f1f5f9' }}>{dog.breed}</h3>
+            <h3 style={{ marginTop: '1rem', fontSize: '1.25rem', color: 'var(--text-primary)' }}>{dog.breed}</h3>
           </div>
         ) : (
           <p className="empty-state">No dog found</p>
