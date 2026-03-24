@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
-import { MessageSquare, Loader2, ArrowRight } from 'lucide-react';
+import { Database, Loader2, ArrowRight } from 'lucide-react';
 
 export default function PostCard() {
-  const [post, setPost] = useState(null);
+  const [resource, setResource] = useState('posts');
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchPost = async () => {
+  const fetchData = async () => {
     setLoading(true);
     setError(null);
     try {
-      const randomId = Math.floor(Math.random() * 100) + 1; // 100 posts available
-      const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${randomId}`);
-      if (!res.ok) throw new Error('Failed to fetch post');
-      const data = await res.json();
-      setPost(data);
+      const randomId = Math.floor(Math.random() * 50) + 1; // 50 items exist for most resources safely
+      const res = await fetch(`https://jsonplaceholder.typicode.com/${resource}/${randomId}`);
+      if (!res.ok) throw new Error(`Failed to fetch ${resource}`);
+      const json = await res.json();
+      setData(json);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -23,14 +24,36 @@ export default function PostCard() {
   };
 
   useEffect(() => {
-    fetchPost();
-  }, []);
+    fetchData();
+  }, [resource]);
 
   return (
     <div className="card fade-in" style={{ animationDelay: '0.4s' }}>
-      <div className="card-header">
-        <div className="card-icon"><MessageSquare size={24} /></div>
-        <h2>JSONPlaceholder</h2>
+      <div className="card-header" style={{ justifyContent: 'space-between', width: '100%', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div className="card-icon"><Database size={24} /></div>
+          <h2>JSONPlaceholder</h2>
+        </div>
+        <select 
+          value={resource} 
+          onChange={(e) => setResource(e.target.value)}
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)', 
+            color: 'var(--text-color)', 
+            border: '1px solid var(--card-border)', 
+            borderRadius: '8px', 
+            padding: '0.4rem 0.5rem', 
+            outline: 'none', 
+            cursor: 'pointer',
+            fontSize: '0.9rem',
+            fontFamily: 'inherit'
+          }}
+        >
+          <option value="posts" style={{ background: 'var(--bg-color)' }}>Posts</option>
+          <option value="comments" style={{ background: 'var(--bg-color)' }}>Comments</option>
+          <option value="albums" style={{ background: 'var(--bg-color)' }}>Albums</option>
+          <option value="photos" style={{ background: 'var(--bg-color)' }}>Photos</option>
+        </select>
       </div>
       
       <div className="card-content">
@@ -38,28 +61,34 @@ export default function PostCard() {
           <Loader2 className="spinner" size={32} />
         ) : error ? (
           <p className="error-text">Error: {error}</p>
-        ) : post ? (
-          <div style={{ textAlign: 'left', width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        ) : data ? (
+          <div style={{ textAlign: 'left', width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}>
+            {resource === 'photos' && data.thumbnailUrl && (
+              <img src={data.thumbnailUrl} alt={data.title} style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px' }} />
+            )}
             <h3 style={{ fontSize: '1.2rem', lineHeight: 1.4, color: '#f1f5f9' }}>
-              {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
+              {(data.title || data.name || '').charAt(0).toUpperCase() + (data.title || data.name || '').slice(1)}
             </h3>
-            <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.6 }}>
-              {post.body}
-            </p>
-            <span style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.5rem' }}>
-              Post ID: {post.id}
+            {(data.body || data.email) && (
+              <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                {data.email ? <span style={{ color: 'var(--accent-color)', display: 'block', marginBottom: '4px' }}>{data.email}</span> : null}
+                {data.body}
+              </p>
+            )}
+            <span style={{ fontSize: '0.8rem', color: '#64748b', marginTop: 'auto', paddingTop: '1rem' }}>
+              Resource: {resource} | ID: {data.id}
             </span>
           </div>
         ) : (
-          <p className="empty-state">No post available</p>
+           <p className="empty-state">Select a resource</p>
         )}
       </div>
 
       <div className="card-actions">
-        <button className="btn btn-primary" onClick={fetchPost} disabled={loading}>
-          {loading ? 'Fetching...' : 'Get Post'}
+        <button className="btn btn-primary" onClick={fetchData} disabled={loading}>
+          {loading ? 'Fetching...' : `Get Random ${resource.slice(0, -1)}`}
         </button>
-        <button className="btn" onClick={fetchPost} disabled={loading} title="Random Post">
+        <button className="btn" onClick={fetchData} disabled={loading} title="Get Random">
           <ArrowRight size={18} />
         </button>
       </div>
