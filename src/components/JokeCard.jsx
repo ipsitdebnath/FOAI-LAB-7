@@ -10,7 +10,7 @@ export default function JokeCard() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('https://official-joke-api.appspot.com/random_joke');
+      const res = await fetch('https://v2.jokeapi.dev/joke/Any?type=twopart');
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await res.json();
       setJoke(data);
@@ -43,7 +43,7 @@ export default function JokeCard() {
               {joke.setup}
             </p>
             <p style={{ color: 'var(--accent-color)', fontWeight: 600, fontSize: '1.2rem' }}>
-              {joke.punchline}
+              {joke.delivery || joke.punchline}
             </p>
           </div>
         ) : (
