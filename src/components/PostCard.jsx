@@ -51,7 +51,7 @@ export default function PostCard() {
         >
           <option value="posts" style={{ background: 'var(--bg-color)' }}>Posts</option>
           <option value="comments" style={{ background: 'var(--bg-color)' }}>Comments</option>
-          <option value="albums" style={{ background: 'var(--bg-color)' }}>Albums</option>
+          <option value="todos" style={{ background: 'var(--bg-color)' }}>Todos</option>
           <option value="photos" style={{ background: 'var(--bg-color)' }}>Photos</option>
         </select>
       </div>
@@ -69,9 +69,21 @@ export default function PostCard() {
             <h3 style={{ fontSize: '1.2rem', lineHeight: 1.4, color: '#f1f5f9' }}>
               {(data.title || data.name || '').charAt(0).toUpperCase() + (data.title || data.name || '').slice(1)}
             </h3>
-            {(data.body || data.email) && (
+            {(data.body || data.email || data.completed !== undefined) && (
               <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.6 }}>
                 {data.email ? <span style={{ color: 'var(--accent-color)', display: 'block', marginBottom: '4px' }}>{data.email}</span> : null}
+                {data.completed !== undefined ? (
+                  <span style={{ 
+                    display: 'inline-block', 
+                    padding: '4px 8px', 
+                    borderRadius: '4px',
+                    background: data.completed ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                    color: data.completed ? 'var(--success-color)' : 'var(--error-color)',
+                    fontWeight: 600
+                  }}>
+                    {data.completed ? 'Completed ✓' : 'Pending ✗'}
+                  </span>
+                ) : null}
                 {data.body}
               </p>
             )}
