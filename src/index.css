@@ -264,3 +264,139 @@ select:focus, input[type="number"]:focus {
   border-color: var(--accent-1) !important;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
 }
+
+/* ===== Responsive: Tablet (≤768px) ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 2.5rem 1rem;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+  header h1 {
+    font-size: 2.2rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+
+  /* Single column grid */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+    border-radius: 20px;
+    gap: 1.25rem;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card-header h2 {
+    font-size: 1.3rem;
+  }
+  .card-icon {
+    padding: 0.6rem;
+    border-radius: 12px;
+  }
+
+  .card-content {
+    min-height: 180px;
+    gap: 1rem;
+  }
+
+  .card-actions {
+    padding-top: 1.25rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+}
+
+/* ===== Responsive: Small phones (≤480px) ===== */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  header {
+    margin-bottom: 1.5rem;
+  }
+  header h1 {
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    font-size: 0.85rem;
+    max-width: 300px;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+    border-radius: 16px;
+    gap: 1rem;
+  }
+  .card::before {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+  }
+  .card-header h2 {
+    font-size: 1.15rem;
+  }
+  .card-icon {
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .card-content {
+    min-height: 160px;
+    gap: 0.75rem;
+  }
+
+  .card-actions {
+    gap: 0.5rem;
+    padding-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.7rem 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .error-text {
+    font-size: 0.85rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  select {
+    font-size: 0.85rem !important;
+    padding: 0.35rem 0.4rem !important;
+    border-radius: 6px !important;
+  }
+}
