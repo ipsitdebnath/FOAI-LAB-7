@@ -62,7 +62,7 @@ export default function PostCard() {
         </div>
       </div>
       
-      <div className="card-content" style={{ maxHeight: '500px', overflowY: 'auto', paddingRight: '0.5rem', alignItems: 'flex-start' }}>
+      <div className="card-content" style={{ maxHeight: '500px', overflowY: 'auto', paddingRight: '0.5rem', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
         {loading ? (
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
             <Loader2 className="spinner" size={32} />
